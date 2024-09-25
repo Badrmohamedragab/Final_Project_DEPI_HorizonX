@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui'; // Required for BackdropFilter
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:horizonx/screens/login_screen.dart';
@@ -18,11 +19,11 @@ class _SplashViewState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 7), () {
       Navigator.of(context).pushAndRemoveUntil(
         CupertinoPageRoute(
           builder: (BuildContext context) {
-            return  LoginScreen();
+            return LoginScreen();
           },
         ),
             (_) => false,
@@ -34,33 +35,42 @@ class _SplashViewState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.fill,
-          image: AssetImage("${imageAsset}background.jpg"),
-        ),
-      ),
-      width: screenWidth,
-      height: screenHeight,
-      child:  Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Image(
-                image: AssetImage("${imageAsset}logo.png"),
-                width: 250,
-              ),
-              SizedBox(
-                height: screenHeight * 0.2,
-              )
 
-            ],
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          // Background with blur
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage("${imageAsset}background.jpg"),
+              ),
+            ),
           ),
-        ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+              child: Container(
+                color: Colors.black.withOpacity(0.2), // Optional color overlay
+              ),
+            ),
+          ),
+          // Foreground: logo
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Image(
+                  image: AssetImage("${imageAsset}logo.png"),
+                  width: 300,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
