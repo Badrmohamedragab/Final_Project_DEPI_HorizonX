@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 7), () {
+    Timer(const Duration(seconds: 4), () {
       Navigator.of(context).pushAndRemoveUntil(
         CupertinoPageRoute(
           builder: (BuildContext context) {
@@ -33,14 +33,10 @@ class _SplashViewState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          // Background with blur
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -53,17 +49,17 @@ class _SplashViewState extends State<SplashScreen> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
               child: Container(
-                color: Colors.black.withOpacity(0.2), // Optional color overlay
+                color: Colors.black.withOpacity(0.2),
               ),
             ),
           ),
           // Foreground: logo
-          Center(
+          const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Image(
+                Image(
                   image: AssetImage("${imageAsset}logo.png"),
                   width: 300,
                 ),

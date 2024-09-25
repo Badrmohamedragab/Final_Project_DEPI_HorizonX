@@ -1,6 +1,8 @@
 import 'dart:ui'; // Required for BackdropFilter
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:horizonx/screens/register_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../constants.dart';
@@ -178,8 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         'Please log in again to continue.';
                                     break;
                                   default:
-                                    message =
-                                        e.code.toString();
+                                    message = e.code.toString();
                                     break;
                                 }
 
@@ -234,6 +235,44 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Spacer(
+                          flex: 2,
+                        ),
+                        GestureDetector(
+                          // onTap: () => signInWithFacebook(),
+                          child: Image.asset(
+                            '${imageAsset}facebook.png',
+                            height: 48,
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        GestureDetector(
+                          // onTap: () => signInWithGoogle(),
+                          child: Image.asset(
+                            '${imageAsset}google.png',
+                            height: 48,
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Image.asset(
+                            '${imageAsset}apple.png',
+                            height: 48,
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 2,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -277,4 +316,29 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+  // Future<UserCredential> signInWithGoogle() async {
+  //   // Trigger the authentication flow
+  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //
+  //   // Obtain the auth details from the request
+  //   final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  //
+  //   // Create a new credential
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth?.accessToken,
+  //     idToken: googleAuth?.idToken,
+  //   );
+  //
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
+  // Future<UserCredential> signInWithFacebook() async {
+  //   // Trigger the sign-in flow
+  //   final LoginResult loginResult = await FacebookAuth.instance.login();
+  //
+  //   // Create a credential from the access token
+  //   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+  //
+  //   // Once signed in, return the UserCredential
+  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  // }
 }
