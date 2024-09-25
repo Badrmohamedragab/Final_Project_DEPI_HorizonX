@@ -22,7 +22,7 @@ class _SplashViewState extends State<SplashScreen> {
       Navigator.of(context).pushAndRemoveUntil(
         CupertinoPageRoute(
           builder: (BuildContext context) {
-            return const LoginScreen();
+            return  LoginScreen();
           },
         ),
             (_) => false,
@@ -52,10 +52,10 @@ class _SplashViewState extends State<SplashScreen> {
             children: [
               const Image(
                 image: AssetImage("${imageAsset}logo.png"),
-                width: 210,
+                width: 250,
               ),
               SizedBox(
-                height: screenHeight * 0.1,
+                height: screenHeight * 0.2,
               )
 
             ],
