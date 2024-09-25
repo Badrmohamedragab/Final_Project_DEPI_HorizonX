@@ -7,18 +7,18 @@ import '../constants.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-   LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-   String? email, password;
+  String? email, password;
 
-   bool isLoading = false;
+  bool isLoading = false;
 
-   GlobalKey<FormState> formKey = GlobalKey();
+  GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-
             Positioned.fill(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0), // Blur effect
+                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                // Blur effect
                 child: Container(
                   color: Colors.black.withOpacity(0.2),
                 ),
               ),
             ),
-
             Form(
               key: formKey,
               child: SingleChildScrollView(
@@ -63,13 +62,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 30),
                     Padding(
-                      padding:  const EdgeInsets.symmetric(horizontal: 36.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 36.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child:  Padding(
+                        child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             validator: (data) {
@@ -77,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return 'field is required';
                               }
                             },
-                            onChanged: (data){
+                            onChanged: (data) {
                               email = data;
                             },
                             decoration: const InputDecoration(
@@ -92,13 +91,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 20),
                     Padding(
-                      padding:  const EdgeInsets.symmetric(horizontal: 36.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 36.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child:  Padding(
+                        child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             validator: (data) {
@@ -106,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return 'field is required';
                               }
                             },
-                            onChanged: (data){
+                            onChanged: (data) {
                               password = data;
                             },
                             obscureText: true,
@@ -130,8 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               isLoading = true;
-                              setState(() {
-                              });
+                              setState(() {});
                               try {
                                 await FirebaseAuth.instance
                                     .signInWithEmailAndPassword(
@@ -139,7 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   password: password!,
                                 );
                                 showSnackBar(context, "Login successfully");
-                                await Future.delayed(const Duration(seconds: 2));
+                                await Future.delayed(
+                                    const Duration(seconds: 2));
 
                                 Navigator.pushReplacement(
                                   context,
@@ -149,17 +148,45 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                               } on FirebaseAuthException catch (e) {
                                 String message = '';
-                                if (e.code == 'user-not-found') {
-                                  message = 'No user found for that email.';
-                                } else if (e.code == 'wrong-password') {
-                                  message ='Wrong password provided for that user.';
+
+                                switch (e.code) {
+                                  case 'invalid-email':
+                                    message =
+                                        'The email address is badly formatted.';
+                                    break;
+                                  case 'user-not-found':
+                                    message = 'No user found for that email.';
+                                    break;
+                                  case 'wrong-password':
+                                    message =
+                                        'Wrong password provided for that user.';
+                                    break;
+                                  case 'too-many-requests':
+                                    message =
+                                        'Too many login attempts. Please try again later.';
+                                    break;
+                                  case 'network-request-failed':
+                                    message =
+                                        'Network error. Please check your internet connection.';
+                                    break;
+                                  case 'invalid-credential':
+                                    message =
+                                        'The credential provided is invalid or expired.';
+                                    break;
+                                  case 'requires-recent-login':
+                                    message =
+                                        'Please log in again to continue.';
+                                    break;
+                                  default:
+                                    message =
+                                        e.code.toString();
+                                    break;
                                 }
+
                                 showSnackBar(context, message);
                               }
                               isLoading = false;
-                              setState(() {
-
-                              });
+                              setState(() {});
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -192,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>  RegisterScreen(),
+                                builder: (context) => RegisterScreen(),
                               ),
                             );
                           },
@@ -216,40 +243,38 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-   void showSnackBar(BuildContext context, String message) {
-     ScaffoldMessenger.of(context).showSnackBar(
-       SnackBar(
-         content: Row(
-           children: [
-             const Icon(
-               Icons.error_outline,
-               color: Colors.white,
-             ),
-             const SizedBox(width: 10),
-             Expanded(
-               child: Text(
-                 message,
-                 style: const TextStyle(
-                     color: Colors.white,
-                     fontSize: 16),
-               ),
-             ),
-           ],
-         ),
-         backgroundColor: ConstColors.primaryGoldColor,
-         behavior: SnackBarBehavior.floating,
-         margin: const EdgeInsets.all(20),
-         shape: RoundedRectangleBorder(
-           borderRadius: BorderRadius.circular(10),
-         ),
-         duration: const Duration(seconds: 4),
-         action: SnackBarAction(
-           label: 'DISMISS',
-           textColor: Colors.white,
-           onPressed: () {
-           },
-         ),
-       ),
-     );
-   }
+
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(
+              Icons.error_outline,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                message,
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: ConstColors.primaryGoldColor,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        duration: const Duration(seconds: 4),
+        action: SnackBarAction(
+          label: 'DISMISS',
+          textColor: Colors.white,
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
 }
