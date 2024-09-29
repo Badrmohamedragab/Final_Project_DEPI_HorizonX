@@ -6,6 +6,7 @@ import 'package:horizonx/screens/login_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../constants.dart';
 import 'home_screen.dart';
+import 'cities_view.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
@@ -177,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const HomeScreen(),
+                                    builder: (context) =>  cities_view(),
                                   ),
                                 );
                               } on FirebaseAuthException catch (e) {
