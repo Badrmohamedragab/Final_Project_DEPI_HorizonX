@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(CityScreen());
+  runApp(cities_view());
 }
 
-class CityScreen extends StatelessWidget {
+class cities_view extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Cities"),
-          backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
+        elevation: 0,
+
+        title: Text(
+          "Cities",
+          style: TextStyle(color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
         ),
+        centerTitle: true,
+      ),
         body: CityList(),
       ),
     );
