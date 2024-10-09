@@ -7,6 +7,7 @@ import 'package:horizonx/screens/register_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../constants.dart';
 import 'home_screen.dart';
+import'cities_view.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
