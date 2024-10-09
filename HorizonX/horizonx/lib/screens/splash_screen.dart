@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashScreen> {
       Navigator.of(context).pushAndRemoveUntil(
         CupertinoPageRoute(
           builder: (BuildContext context) {
-            return LoginScreen();
+            return  LoginScreen();
           },
         ),
             (_) => false,

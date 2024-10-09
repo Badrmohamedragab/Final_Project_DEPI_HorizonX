@@ -9,13 +9,12 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const HorizonX());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HorizonX extends StatelessWidget {
+  const HorizonX({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
