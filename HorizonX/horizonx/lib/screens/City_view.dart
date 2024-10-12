@@ -1,4 +1,3 @@
-
 //
 // import 'package:flutter/material.dart';
 // import 'cities_view.dart';
@@ -168,9 +167,10 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
+import 'cafes.dart';
 import 'cities_view.dart';
+import 'restaurants.dart';
 
 class city_view extends StatelessWidget {
   final String cityName;
@@ -186,92 +186,110 @@ class city_view extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.orange),
-          onPressed: () {
-            Navigator.pop(context); // Return to previous screen
-          },
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.orange),
+            onPressed: () {
+              Navigator.pop(context); // Return to previous screen
+            },
+          ),
+          title: Text(
+            cityName,
+            style: TextStyle(
+                color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        title: Text(
-          cityName,
-          style: TextStyle(color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
+        body: Column(
+          children: [
           // Top Image with Title and Landmark
           Container(
-            height: 200,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(cityImagePath),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 16,
-                  bottom: 16,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        cityName,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        cityLandmark,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+          height: 200,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(cityImagePath),
+              fit: BoxFit.cover,
             ),
           ),
-
-          // Discover section (you can customize as needed)
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Discover $cityName',
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+          child: Stack(
+            children: [
+              Positioned(
+                left: 16,
+                bottom: 16,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      cityName,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      cityLandmark,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
                 ),
+              ),
+            ],
+          ),
+        ),
+
+        // Discover section (you can customize as needed)
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Discover $cityName',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
+        ),
 
-          // Content (additional info, images, etc.)
-          Expanded(
+        // Content (additional info, images, etc.)
+        Expanded(
             child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              children: [
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                children: [
                 // Placeholder rows, replace with actual content
-                _buildCategoryRow('Restaurants', 'https://6amcity.brightspotcdn.com/dims4/default/26f5f53/2147483647/strip/true/crop/1332x750+0+69/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk1-prod-sixam-city.s3.us-east-2.amazonaws.com%2Fbrightspot%2F0d%2F84%2F7c175b5e443092d969b6c19af3f5%2F393170483-18307701454185066-3288527068679201488-n.jpg'),
-                _buildCategoryRow('Cafes', 'https://assets.cairo360.com/app/uploads/2023/12/03/252054117_864639724197215_3585822908968159397_n-1024x497.jpeg'),
-                _buildCategoryRow('Tourism', 'https://miro.medium.com/v2/resize:fit:1400/0*HTIjmy_g7zt6I3bD'),
-                _buildCategoryRow('Beaches', 'https://www.gohawaii.com/sites/default/files/hero-unit-images/11500_mauibeaches.jpg'),
-                _buildCategoryRow('Shopping', 'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
-                _buildCategoryRow('Parks', 'https://www.taber.ca/home/showpublishedimage/3263/637067364321670000'),
-              ],
-            ),
-          ),
-        ],
-      ),
+                GestureDetector(
+                onTap: ()=> Navigator.push(
+                    context,
+                    MaterialPageRoute(
+            builder: (context) => Restaurants())),
+    child: _buildCategoryRow('Restaurants',
+    'https://6amcity.brightspotcdn.com/dims4/default/26f5f53/2147483647/strip/true/crop/1332x750+0+69/resize/1000x563!/quality/90/?url=https%3A%2F%2Fk1-prod-sixam-city.s3.us-east-2.amazonaws.com%2Fbrightspot%2F0d%2F84%2F7c175b5e443092d969b6c19af3f5%2F393170483-18307701454185066-3288527068679201488-n.jpg')),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Cafes())),
+      child: _buildCategoryRow('Cafes',
+      'https://assets.cairo360.com/app/uploads/2023/12/03/252054117_864639724197215_3585822908968159397_n-1024x497.jpeg'),
+    ),
+    _buildCategoryRow('Tourism',
+    'https://miro.medium.com/v2/resize:fit:1400/0*HTIjmy_g7zt6I3bD'),
+    _buildCategoryRow('Beaches',
+    'https://www.gohawaii.com/sites/default/files/hero-unit-images/11500_mauibeaches.jpg'),
+    _buildCategoryRow('Shopping',
+    'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
+    _buildCategoryRow('Parks',
+    'https://www.taber.ca/home/showpublishedimage/3263/637067364321670000'),
+    ],
+    ),
+    ),
+    ],
+    ),
     );
   }
 
@@ -298,7 +316,10 @@ class city_view extends StatelessWidget {
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
-                        colors: [Colors.black.withOpacity(0.6), Colors.transparent],
+                        colors: [
+                          Colors.black.withOpacity(0.6),
+                          Colors.transparent
+                        ],
                       ),
                     ),
                   ),
