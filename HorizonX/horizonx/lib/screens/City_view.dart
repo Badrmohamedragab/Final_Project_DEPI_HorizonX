@@ -284,7 +284,7 @@ class city_view extends StatelessWidget {
     _buildCategoryRow('Shopping',
     'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
     _buildCategoryRow('Parks',
-    'https://www.taber.ca/home/showpublishedimage/3263/637067364321670000'),
+    'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ab/b0/1c/caption.jpg?w=900&h=500&s=1'),
     ],
     ),
     ),
