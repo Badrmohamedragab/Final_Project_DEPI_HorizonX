@@ -35,8 +35,8 @@ dependencies:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
   modal_progress_hud_nsn: ^0.5.0
-  permission_handler: ^11.3.1
-  speech_to_text: ^7.0.0
+  permission_handler: ^11.0.1
+  speech_to_text: ^6.0.0
 #  google_sign_in: ^6.1.6
 #  flutter_facebook_auth: ^3.5.0
 dev_dependencies:
