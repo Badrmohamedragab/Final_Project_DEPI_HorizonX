@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:horizonx/screens/search_screen.dart';
 import 'package:horizonx/screens/splash_screen.dart';
 
 import 'firebase_options.dart';
@@ -19,7 +20,8 @@ class HorizonX extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: SearchByVoiceScreen(),
     );
   }
 }
