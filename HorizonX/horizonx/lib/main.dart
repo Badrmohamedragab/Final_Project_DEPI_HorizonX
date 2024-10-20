@@ -20,8 +20,8 @@ class HorizonX extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: SplashScreen(),
-      home: SearchByVoiceScreen(),
+      home: SplashScreen(),
+      // home: SearchByVoiceScreen(),
     );
   }
 }
