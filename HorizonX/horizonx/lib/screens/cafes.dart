@@ -67,7 +67,7 @@ class Cafes extends StatelessWidget {
       ),
       body: ListView.builder(
           itemCount: cafeList.length,
-          itemBuilder: (context, _) => (cafesOrRestaurants(cafeList[_]))),
+          itemBuilder: (context, _) => (cafesOrRestaurants(context , cafeList[_]))),
     );
   }
 }
