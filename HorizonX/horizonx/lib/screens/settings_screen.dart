@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:horizonx/widgets/lang_button.dart';
 import 'package:horizonx/widgets/settings_option.dart';
 
+import 'login_screen.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -90,7 +91,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle logout
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginScreen(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade700,
