@@ -169,6 +169,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:horizonx/screens/beaches.dart';
+import 'package:horizonx/screens/tourism.dart';
 import '../constants.dart';
 import '../widgets/custom_app_bar.dart';
 import 'cafes.dart';
@@ -265,8 +266,14 @@ class city_view extends StatelessWidget {
       child: _buildCategoryRow('Cafes',
       'https://assets.cairo360.com/app/uploads/2023/12/03/252054117_864639724197215_3585822908968159397_n-1024x497.jpeg'),
     ),
-    _buildCategoryRow('Tourism',
-    'https://miro.medium.com/v2/resize:fit:1400/0*HTIjmy_g7zt6I3bD'),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Tourism())),
+      child: _buildCategoryRow('Tourism',
+      'https://miro.medium.com/v2/resize:fit:1400/0*HTIjmy_g7zt6I3bD'),
+    ),
     GestureDetector(
       onTap: ()=> Navigator.push(
         context,
