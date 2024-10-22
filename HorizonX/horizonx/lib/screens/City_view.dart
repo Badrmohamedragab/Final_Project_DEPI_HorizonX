@@ -169,6 +169,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:horizonx/screens/beaches.dart';
+import 'package:horizonx/screens/parks.dart';
 import 'package:horizonx/screens/shopping.dart';
 import 'package:horizonx/screens/tourism.dart';
 import '../constants.dart';
@@ -291,8 +292,14 @@ class city_view extends StatelessWidget {
       child: _buildCategoryRow('Shopping',
       'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
     ),
-    _buildCategoryRow('Parks',
-    'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ab/b0/1c/caption.jpg?w=900&h=500&s=1'),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Parks())),
+      child: _buildCategoryRow('Parks',
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ab/b0/1c/caption.jpg?w=900&h=500&s=1'),
+    ),
     ],
     ),
     ),
