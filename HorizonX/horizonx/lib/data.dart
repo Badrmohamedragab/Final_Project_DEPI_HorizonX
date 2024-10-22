@@ -106,7 +106,7 @@ class Data{
       address: "Naama Bay, Sharm El Sheikh",
       longitude: "34.3071",
       latitude: "27.9147",
-      picture: "https://lh5.googleusercontent.com/p/AF1QipOzEcJjdOlftnYoGvXg9MDg1OW5TfsypCKlyPIv",
+      picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmRdyJc55vkPCidJ3nMk8gwgdJgbZxfxdNTw&s",
       rate: 4.7,
       numberOfRatings: 17000
   ),
@@ -118,7 +118,7 @@ class Data{
   address: "Sahl Hasheesh, Hurghada",
   longitude: "33.8912",
   latitude: "27.0531",
-  picture: "https://lh5.googleusercontent.com/p/AF1QipPi7y0e_F8YbtalKiFspHcwP7hPEFPkVbiM5szH",
+  picture: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/3f/f9/a7/the-oberoi-sahl-hasheesh.jpg?w=600&h=400&s=1",
   rate: 4.8,
   numberOfRatings: 22000
   ),
@@ -130,7 +130,7 @@ class Data{
   address: "Mamoura, Alexandria",
   longitude: "29.8598",
   latitude: "31.2743",
-  picture: "https://lh5.googleusercontent.com/p/AF1QipOKxyyKJlyHTnFTLX6QElz6Nv7Z3eAOmb3L5n1H",
+  picture: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/318984912.jpg?k=c551caec38958f0924088be42e167f84373957e8f249fb9da870356348e45552&o=&hp=1",
   rate: 4.5,
   numberOfRatings: 18000
   ),
@@ -144,7 +144,7 @@ class Data{
         address: "Tahrir Square, Cairo",
         longitude: "31.2357",
         latitude: "30.0444",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipPqgF9ddLs7xtFcvhZr8e9Zz2IMKsVu5_gjYRc",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKvQ2HxeYLgFsJ0v_T1JnV6N-qLGY23EjowA&s",
         rate: 4.6,
         numberOfRatings: 50000
     ),
@@ -156,7 +156,7 @@ class Data{
         address: "El Shatby, Alexandria",
         longitude: "29.9091",
         latitude: "31.2156",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipPzX_8DlHz_r-7uFzDrNUDJ_XutZwVrRxdHGHo",
+        picture: "https://www.arabcont.com/Images/ProjectImage/AlexLib02.jpg",
         rate: 4.7,
         numberOfRatings: 35000
     ),
@@ -168,7 +168,7 @@ class Data{
         address: "West Bank, Luxor",
         longitude: "32.6044",
         latitude: "25.7402",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipNWctc6Wss7RaW8L5KtYP7sErbiQa12HrfEwWVp",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZuWci5P6fO7s6j_uk4Jv7xmarkunE2CNN3w&s",
         rate: 4.8,
         numberOfRatings: 15000
     ),
@@ -180,7 +180,7 @@ class Data{
         address: "Philae Island, Aswan",
         longitude: "32.8998",
         latitude: "24.0223",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipP5-MkV3WbkPiRt1MIeqT82U7ULJrG_3iVxZb-V",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_m2_T3zZzBUkbVddmGxSA8HXxbZpjhnEyIg&s",
         rate: 4.7,
         numberOfRatings: 25000
     ),
@@ -192,7 +192,7 @@ class Data{
         address: "Al Haram, Giza",
         longitude: "31.1342",
         latitude: "29.9765",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipNfRi5cR4xDYNrYPSft8HVEavz2obYHjKt_c_HG",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT996ZwTDIgvcs4Nq2TskHotABIwIkcjq-9Q&s",
         rate: 4.9,
         numberOfRatings: 100000
     )
@@ -206,7 +206,7 @@ class Data{
         address: "Al Wahat Road, 6th of October, Giza",
         longitude: "31.0184",
         latitude: "29.9647",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipOxR70R13GlzoZFs7oeO9HZAC1KytjG9WvG9uDj",
+        picture: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/6b/8e/fa/caption.jpg?w=1200&h=-1&s=1",
         rate: 4.5,
         numberOfRatings: 42000
     ),
@@ -218,7 +218,7 @@ class Data{
         address: "Alex Desert Rd, Alexandria",
         longitude: "29.9466",
         latitude: "31.2076",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipOxf8_tSyDlYgM8YcXgRjFnLeFnZ0kXHK07fNZK",
+        picture: "https://cosmos-eng.com/wp-content/uploads/2018/11/IMG_0976-1.jpg",
         rate: 4.4,
         numberOfRatings: 30000
     ),
@@ -230,7 +230,7 @@ class Data{
         address: "Village Road, Hurghada",
         longitude: "33.8117",
         latitude: "27.1444",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipPi7NUzqOZBLpHjTXxNTWq9CUp8kGoRHe_fOTXD",
+        picture: "https://c8.alamy.com/comp/E526YK/senzo-mall-is-a-huge-new-shopping-center-this-shopping-center-was-E526YK.jpg",
         rate: 4.3,
         numberOfRatings: 15000
     ),
@@ -242,7 +242,7 @@ class Data{
         address: "White Knight Beach, Sharm El Sheikh",
         longitude: "34.3838",
         latitude: "27.9621",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipNFnPlbNfi6PFSYfi84OiXyqSz0aFs5-QM4s8Al",
+        picture: "https://sharmzone.com/uploads/images/2022/03/image_750x_621e6ce6e158d.jpg",
         rate: 4.6,
         numberOfRatings: 12000
     ),
@@ -254,7 +254,7 @@ class Data{
         address: "New Cairo, Cairo",
         longitude: "31.4341",
         latitude: "30.0154",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipNu4qlnKT_u5jyzTx7jdW0-QeOKGvLGInbNKlYV",
+        picture: "https://constraderealestate.com/wp-content/uploads/2023/02/%D9%85%D9%88%D9%84-%D9%83%D8%A7%D9%8A%D8%B1%D9%88-%D9%81%D9%8A%D8%B3%D8%AA%D9%8A%D9%81%D8%A7%D9%84-compress.jpg",
         rate: 4.7,
         numberOfRatings: 50000
     )
@@ -268,7 +268,7 @@ class Data{
         address: "Salah Salem St, El-Darb El-Ahmar, Cairo",
         longitude: "31.2636",
         latitude: "30.0385",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipP4XMsvh64RszWiUuex7YahP_6RCk5kElzDhYxd",
+        picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Al_Azhar_Park_3.jpg/640px-Al_Azhar_Park_3.jpg",
         rate: 4.7,
         numberOfRatings: 41000
     ),
@@ -280,7 +280,7 @@ class Data{
         address: "El-Montaza, Alexandria",
         longitude: "29.9532",
         latitude: "31.2775",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipPuC1vO0FXN6-jE9rMdZtUb99CwZXEX59sqUzCa",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFTO2Vv4RwflIhwkOsL4kRIIPjv-ywfnkbUQ&s",
         rate: 4.6,
         numberOfRatings: 37000
     ),
@@ -292,7 +292,7 @@ class Data{
         address: "University St, Giza",
         longitude: "31.2154",
         latitude: "30.0289",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipNw_TNT8Btv5B5Kc4bKx_H2KOjcfzoxtO7l1hJJ",
+        picture: "https://scenenow.com/Content/Admin/Uploads/Articles/ArticlesMainPhoto/44166/f5241f6d-bd92-4d09-8810-fbd995dc08bc.jpg",
         rate: 4.3,
         numberOfRatings: 12000
     ),
@@ -304,7 +304,7 @@ class Data{
         address: "Corniche El Nile, Aswan",
         longitude: "32.8984",
         latitude: "24.0864",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipOxevlRlnSx0yyAL8FqZSCBLfgfSEYOA4Z8tKWh",
+        picture: "https://scenenow.com/Content/editor_api/images/PortSaidFeryalGarden_Website03-8d0a7523-15d9-4db0-ae4d-662c48dc238d.jpg",
         rate: 4.5,
         numberOfRatings: 7000
     ),
@@ -316,7 +316,7 @@ class Data{
         address: "Hurghada Marina Blvd, Hurghada",
         longitude: "33.8372",
         latitude: "27.1922",
-        picture: "https://lh5.googleusercontent.com/p/AF1QipMVRfxytsHYW-0Kh_-g3jO6KtGml0lTIyWAP7QR",
+        picture: "https://www.cairotoptours.com/storage/1770/conversions/Aswan%20Botanical%20Gardens-webp.webp",
         rate: 4.4,
         numberOfRatings: 5000
     )
