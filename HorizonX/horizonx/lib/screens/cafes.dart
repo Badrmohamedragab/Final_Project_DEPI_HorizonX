@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart';
 import '../models/cafe.dart';
 import 'card_cafes_restaurants.dart';
 
@@ -61,9 +62,20 @@ class Cafes extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("Cafes")),
-        backgroundColor: const Color.fromARGB(150, 0, 90, 158),
-        shadowColor: const Color.fromARGB(255, 20, 50, 80),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.orange),
+          onPressed: () {
+            Navigator.pop(context); // Return to previous screen
+          },
+        ),
+        title: const Text(
+          "Cafes",
+          style: TextStyle(
+              color: ConstColors.primaryBlueColor, fontSize: 22, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: ListView.builder(
           itemCount: cafeList.length,
