@@ -169,6 +169,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:horizonx/screens/beaches.dart';
+import 'package:horizonx/screens/shopping.dart';
 import 'package:horizonx/screens/tourism.dart';
 import '../constants.dart';
 import '../widgets/custom_app_bar.dart';
@@ -282,8 +283,14 @@ class city_view extends StatelessWidget {
       child: _buildCategoryRow('Beaches',
       'https://www.gohawaii.com/sites/default/files/hero-unit-images/11500_mauibeaches.jpg'),
     ),
-    _buildCategoryRow('Shopping',
-    'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Shopping())),
+      child: _buildCategoryRow('Shopping',
+      'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
+    ),
     _buildCategoryRow('Parks',
     'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ab/b0/1c/caption.jpg?w=900&h=500&s=1'),
     ],
