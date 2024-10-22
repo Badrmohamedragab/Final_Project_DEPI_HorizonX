@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:horizonx/constants.dart';
 import 'package:horizonx/models/place.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/custom_app_bar.dart';
+
 abstract class Feature {
   String title;
   Feature(this.title);
@@ -13,15 +15,43 @@ abstract class Feature {
 }
 
 class HowToGoFeature extends Feature {
-  HowToGoFeature() : super('How to Go');
+  final Place place; // Add a reference to the Place object
+
+  HowToGoFeature(this.place) : super('How to Go');
 
   @override
   Widget buildContent() {
-    return const Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Here is the information on how to go to the place.',
+        const Text(
+          'Here is the information on how to go to the place:',
           style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          place.address, // Use the address from the Place object
+          style: const TextStyle(
+            fontSize: 16,
+            color: ConstColors.primaryBlueColor,
+          ),
+        ),
+        const SizedBox(height: 10),
+
+        // Button to open Google Maps
+        ElevatedButton(
+          onPressed: () {
+            final uri = Uri.parse(place.location);
+            launchUrl(uri, mode: LaunchMode.externalApplication);
+          },
+          style: ElevatedButton.styleFrom(
+            primary: ConstColors.primaryBlueColor,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          ),
+          child: const Text(
+            'Open in Google Maps',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
@@ -79,34 +109,35 @@ class FeatureButton extends StatelessWidget {
           backgroundColor: isSelected ? ConstColors.primaryBlueColor : Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
-
           ),
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         ),
-        child: Text(feature.title , style: TextStyle(color: isSelected ? Colors.white : ConstColors.primaryBlueColor),)
-      );
+        child: Text(
+          feature.title,
+          style: TextStyle(color: isSelected ? Colors.white : ConstColors.primaryBlueColor),
+        ));
   }
 }
 
 class PlaceDetailsScreen extends StatefulWidget {
   final Place place;
-  const PlaceDetailsScreen({super.key , required this.place});
+  const PlaceDetailsScreen({super.key, required this.place});
 
   @override
   State<PlaceDetailsScreen> createState() => _PlaceDetailsScreenState();
-
 }
 
 class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
   late Feature selectedFeature;
+
   @override
   void initState() {
     super.initState();
-    selectedFeature = HowToGoFeature();
+    selectedFeature = HowToGoFeature(widget.place); // Pass the place to the feature
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: custom_app_bar(context, "Restaurants"),
       body: SingleChildScrollView(
@@ -114,7 +145,7 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30),
@@ -219,83 +250,75 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Description",
-                      style:  TextStyle(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Description",
+                    style: TextStyle(
                         color: ConstColors.primaryBlueColor,
                         fontSize: 24,
-                        fontWeight: FontWeight.bold
-                      ),
-
-
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      widget.place.description,
-                      style:  const TextStyle(
-                          color: ConstColors.primaryBlueColor,
-                          fontSize: 16,
-                      ),
-                    ),
-                    const Divider(
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    widget.place.description,
+                    style: const TextStyle(
                       color: ConstColors.primaryBlueColor,
-                      height: 25,
-                      thickness: 0.7,
-
+                      fontSize: 16,
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        FeatureButton(
-                          feature: HowToGoFeature(),
-                          isSelected: selectedFeature is HowToGoFeature,
-                          onPressed: () {
-                            setState(() {
-                              selectedFeature = HowToGoFeature();
-                            });
-                          },
-                        ),
-                        const SizedBox(width: 10),
-                        FeatureButton(
-                          feature: ReviewsFeature(),
-                          isSelected: selectedFeature is ReviewsFeature,
-                          onPressed: () {
-                            setState(() {
-                              selectedFeature = ReviewsFeature();
-                            });
-                          },
-                        ),
-                        SizedBox(width: 10),
-                        FeatureButton(
-                          feature: BookingFeature(),
-                          isSelected: selectedFeature is BookingFeature,
-                          onPressed: () {
-                            setState(() {
-                              selectedFeature = BookingFeature();
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    const Divider(
-                      color: ConstColors.primaryBlueColor,
-                      height: 25,
-                      thickness: 0.7,
-                    ),
-                    selectedFeature.buildContent(),
-
-                  ],
-                )
-
-            )
+                  ),
+                  const Divider(
+                    color: ConstColors.primaryBlueColor,
+                    height: 25,
+                    thickness: 0.7,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FeatureButton(
+                        feature: HowToGoFeature(widget.place), // Pass the place to the feature
+                        isSelected: selectedFeature is HowToGoFeature,
+                        onPressed: () {
+                          setState(() {
+                            selectedFeature = HowToGoFeature(widget.place); // Update the selected feature
+                          });
+                        },
+                      ),
+                      const SizedBox(width: 10),
+                      FeatureButton(
+                        feature: ReviewsFeature(),
+                        isSelected: selectedFeature is ReviewsFeature,
+                        onPressed: () {
+                          setState(() {
+                            selectedFeature = ReviewsFeature();
+                          });
+                        },
+                      ),
+                      const SizedBox(width: 10),
+                      FeatureButton(
+                        feature: BookingFeature(),
+                        isSelected: selectedFeature is BookingFeature,
+                        onPressed: () {
+                          setState(() {
+                            selectedFeature = BookingFeature();
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                    color: ConstColors.primaryBlueColor,
+                    height: 25,
+                    thickness: 0.7,
+                  ),
+                  selectedFeature.buildContent(), // This will now show the relevant feature content
+                ],
+              ),
+            ),
           ],
         ),
       ),

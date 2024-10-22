@@ -1,13 +1,13 @@
-import 'dart:ui'; // Required for BackdropFilter
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:horizonx/screens/register_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../constants.dart';
+import '../helper/show_snackbar.dart';
 import 'home_screen.dart';
-import'cities_view.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -253,7 +253,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           flex: 1,
                         ),
                         GestureDetector(
-                          // onTap: () => signInWithGoogle(),
+                          onTap: () {
+                            signInWithGoogle();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                            showSnackBar(context, "Login successfully");
+                          },
                           child: Image.asset(
                             '${imageAsset}google.png',
                             height: 48,
@@ -284,62 +293,51 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            const Icon(
-              Icons.error_outline,
-              color: Colors.white,
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                message,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: ConstColors.primaryGoldColor,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        duration: const Duration(seconds: 4),
-        action: SnackBarAction(
-          label: 'DISMISS',
-          textColor: Colors.white,
-          onPressed: () {},
-        ),
-      ),
+  Future<void> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
     );
+
+
+    try {
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+
+      await Future.delayed(const Duration(seconds: 2));
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      String message;
+
+      switch (e.code) {
+        case 'invalid-credential':
+          message = 'The credential provided is invalid or expired.';
+          break;
+        case 'operation-not-allowed':
+          message = 'Signing in with Google is not enabled.';
+          break;
+        case 'user-disabled':
+          message = 'This user has been disabled.';
+          break;
+        default:
+          message ="a7a";
+          break;
+      }
+
+      showSnackBar(context, message);
+    }
   }
-  // Future<UserCredential> signInWithGoogle() async {
-  //   // Trigger the authentication flow
-  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  //
-  //   // Obtain the auth details from the request
-  //   final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-  //
-  //   // Create a new credential
-  //   final credential = GoogleAuthProvider.credential(
-  //     accessToken: googleAuth?.accessToken,
-  //     idToken: googleAuth?.idToken,
-  //   );
-  //
-  //   return await FirebaseAuth.instance.signInWithCredential(credential);
-  // }
-  // Future<UserCredential> signInWithFacebook() async {
-  //   // Trigger the sign-in flow
-  //   final LoginResult loginResult = await FacebookAuth.instance.login();
-  //
-  //   // Create a credential from the access token
-  //   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  //
-  //   // Once signed in, return the UserCredential
-  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  // }
+
 }

@@ -13,7 +13,18 @@ class cities_view extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: custom_app_bar(context, "Cities"),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "Cities",
+            style: const TextStyle(
+                color: ConstColors.primaryBlueColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+        ),
         body: CityList(),
       ),
     );

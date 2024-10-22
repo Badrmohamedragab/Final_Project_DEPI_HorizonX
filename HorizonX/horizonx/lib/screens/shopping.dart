@@ -11,7 +11,7 @@ class Shopping extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: custom_app_bar(context, "Tourism"),
+      appBar: custom_app_bar(context, "Shopping"),
       body: ListView.builder(
           itemCount: shoppingList.length,
           itemBuilder: (context, _) =>
