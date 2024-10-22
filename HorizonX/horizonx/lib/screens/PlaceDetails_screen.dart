@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:horizonx/constants.dart';
 import 'package:horizonx/models/place.dart';
+
+import '../widgets/custom_app_bar.dart';
 class PlaceDetailsScreen extends StatelessWidget {
   final Place place;
   const PlaceDetailsScreen({super.key , required this.place});
@@ -9,17 +11,7 @@ class PlaceDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.orange),
-          onPressed: () {
-            Navigator.pop(context); // Return to previous screen
-          },
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: const Text("Restaurant", style: TextStyle(color: ConstColors.primaryBlueColor, fontWeight: FontWeight.bold),),
-      ),
+      appBar: custom_app_bar(context, "Restaurants"),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
