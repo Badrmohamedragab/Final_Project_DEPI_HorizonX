@@ -168,6 +168,10 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:horizonx/screens/beaches.dart';
+import 'package:horizonx/screens/parks.dart';
+import 'package:horizonx/screens/shopping.dart';
+import 'package:horizonx/screens/tourism.dart';
 import '../constants.dart';
 import '../widgets/custom_app_bar.dart';
 import 'cafes.dart';
@@ -264,14 +268,38 @@ class city_view extends StatelessWidget {
       child: _buildCategoryRow('Cafes',
       'https://assets.cairo360.com/app/uploads/2023/12/03/252054117_864639724197215_3585822908968159397_n-1024x497.jpeg'),
     ),
-    _buildCategoryRow('Tourism',
-    'https://miro.medium.com/v2/resize:fit:1400/0*HTIjmy_g7zt6I3bD'),
-    _buildCategoryRow('Beaches',
-    'https://www.gohawaii.com/sites/default/files/hero-unit-images/11500_mauibeaches.jpg'),
-    _buildCategoryRow('Shopping',
-    'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
-    _buildCategoryRow('Parks',
-    'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ab/b0/1c/caption.jpg?w=900&h=500&s=1'),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Tourism())),
+      child: _buildCategoryRow('Tourism',
+      'https://miro.medium.com/v2/resize:fit:1400/0*HTIjmy_g7zt6I3bD'),
+    ),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Beaches())
+      ),
+      child: _buildCategoryRow('Beaches',
+      'https://www.gohawaii.com/sites/default/files/hero-unit-images/11500_mauibeaches.jpg'),
+    ),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Shopping())),
+      child: _buildCategoryRow('Shopping',
+      'https://cmmodels.com/wp-content/uploads/2021/01/new-york-shopping-mall-strassen-luxus-designer-laden.jpg'),
+    ),
+    GestureDetector(
+      onTap: ()=> Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Parks())),
+      child: _buildCategoryRow('Parks',
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/ab/b0/1c/caption.jpg?w=900&h=500&s=1'),
+    ),
     ],
     ),
     ),
