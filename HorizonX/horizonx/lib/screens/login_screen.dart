@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'dart:ui'; // Required for BackdropFilter
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -7,10 +6,12 @@ import 'package:horizonx/screens/register_screen.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../constants.dart';
 import '../helper/show_snackbar.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -64,150 +65,82 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 36.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            validator: (data) {
-                              if (data!.isEmpty) {
-                                return 'field is required';
-                              }
-                            },
-                            onChanged: (data) {
-                              email = data;
-                            },
-                            decoration: const InputDecoration(
-                              labelText: "Email",
-                              border: InputBorder.none,
-                              labelStyle: TextStyle(color: Colors.white),
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
+                    CustomTextField(
+                      hintText: "Email",
+                      obscure: false,
+                      onChanged: (data) {
+                        email = data;
+                      },
                     ),
                     const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 36.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            validator: (data) {
-                              if (data!.isEmpty) {
-                                return 'field is required';
-                              }
-                            },
-                            onChanged: (data) {
-                              password = data;
-                            },
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: "Password",
-                              border: InputBorder.none,
-                              labelStyle: TextStyle(color: Colors.white),
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
+                    CustomTextField(
+                      hintText: "Password",
+                      obscure: true,
+                      onChanged: (data) {
+                        password = data;
+                      },
                     ),
                     const SizedBox(height: 40),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 36.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            if (formKey.currentState!.validate()) {
-                              isLoading = true;
-                              setState(() {});
-                              try {
-                                await FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
-                                  email: email!,
-                                  password: password!,
-                                );
-                                showSnackBar(context, "Login successfully");
-                                await Future.delayed(
-                                    const Duration(seconds: 2));
+                    CustomButton(
+                      text: "Login",
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          isLoading = true;
+                          setState(() {});
+                          try {
+                            await loginUser();
+                            showSnackBar(context, "Login successfully");
+                            await Future.delayed(const Duration(seconds: 2));
 
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeScreen(),
-                                  ),
-                                );
-                              } on FirebaseAuthException catch (e) {
-                                String message = '';
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>  HomeScreen(),
+                              ),
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            String message = '';
 
-                                switch (e.code) {
-                                  case 'invalid-email':
-                                    message =
-                                        'The email address is badly formatted.';
-                                    break;
-                                  case 'user-not-found':
-                                    message = 'No user found for that email.';
-                                    break;
-                                  case 'wrong-password':
-                                    message =
-                                        'Wrong password provided for that user.';
-                                    break;
-                                  case 'too-many-requests':
-                                    message =
-                                        'Too many login attempts. Please try again later.';
-                                    break;
-                                  case 'network-request-failed':
-                                    message =
-                                        'Network error. Please check your internet connection.';
-                                    break;
-                                  case 'invalid-credential':
-                                    message =
-                                        'The credential provided is invalid or expired.';
-                                    break;
-                                  case 'requires-recent-login':
-                                    message =
-                                        'Please log in again to continue.';
-                                    break;
-                                  default:
-                                    message = e.code.toString();
-                                    break;
-                                }
-
-                                showSnackBar(context, message);
-                              }
-                              isLoading = false;
-                              setState(() {});
+                            switch (e.code) {
+                              case 'invalid-email':
+                                message =
+                                'The email address is badly formatted.';
+                                break;
+                              case 'user-not-found':
+                                message = 'No user found for that email.';
+                                break;
+                              case 'wrong-password':
+                                message =
+                                'Wrong password provided for that user.';
+                                break;
+                              case 'too-many-requests':
+                                message =
+                                'Too many login attempts. Please try again later.';
+                                break;
+                              case 'network-request-failed':
+                                message =
+                                'Network error. Please check your internet connection.';
+                                break;
+                              case 'invalid-credential':
+                                message =
+                                'The credential provided is invalid or expired.';
+                                break;
+                              case 'requires-recent-login':
+                                message = 'Please log in again to continue.';
+                                break;
+                              default:
+                                message = e.code.toString();
+                                break;
                             }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            backgroundColor: ConstColors.primaryBlueColor,
-                          ),
-                          child: const Text(
-                            "Login",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
+
+                            showSnackBar(context, message);
+                          }
+                          isLoading = false;
+                          setState(() {});
+                        }
+                      },
                     ),
+
                     const SizedBox(height: 100), // Adjusted spacing
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -253,16 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           flex: 1,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            signInWithGoogle();
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeScreen(),
-                              ),
-                            );
-                            showSnackBar(context, "Login successfully");
-                          },
+                          onTap: () => signInWithGoogle(),
                           child: Image.asset(
                             '${imageAsset}google.png',
                             height: 48,
@@ -292,6 +216,15 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  Future<void> loginUser() async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+      email: email!,
+      password: password!,
+    );
+  }
+
 
   Future<void> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -339,5 +272,15 @@ class _LoginScreenState extends State<LoginScreen> {
       showSnackBar(context, message);
     }
   }
-
+// Future<UserCredential> signInWithFacebook() async {
+//   // Trigger the sign-in flow
+//   final LoginResult loginResult = await FacebookAuth.instance.login();
+//
+//   // Create a credential from the access token
+//   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+//
+//   // Once signed in, return the UserCredential
+//   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+// }
 }
+
