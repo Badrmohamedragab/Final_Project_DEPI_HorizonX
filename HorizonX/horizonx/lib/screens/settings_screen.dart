@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:horizonx/widgets/lang_button.dart';
 import 'package:horizonx/widgets/settings_option.dart';
 
+import '../constants.dart';
 import 'login_screen.dart';
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
-
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
@@ -25,13 +25,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 const CircleAvatar(
                   radius: 50,
-                  // backgroundImage:
-                  //     NetworkImage('https://via.placeholder.com/150'),
-                  backgroundColor: Colors.orange,
+                  backgroundImage: AssetImage("${imageAsset}preson.jpg"),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width / 20),
                 Text(
-                  'Name',
+                  'Badr',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,

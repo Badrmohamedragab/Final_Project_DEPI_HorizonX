@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:horizonx/constants.dart';
 import 'City_view.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class cities_view extends StatelessWidget {
 
         title: Text(
           "Cities",
-          style: TextStyle(color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(color: ConstColors.primaryBlueColor, fontSize: 22, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -95,6 +96,7 @@ class RegionCard extends StatelessWidget {
           Text(
             region.name,
             style: TextStyle(
+              color: ConstColors.primaryBlueColor ,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

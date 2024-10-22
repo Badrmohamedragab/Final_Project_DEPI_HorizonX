@@ -6,8 +6,7 @@ import 'package:horizonx/screens/search_screen.dart';
 import 'package:horizonx/screens/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+   HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -17,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _pages = [
      cities_view(),
      const SearchByVoiceScreen(),
-    const SettingsScreen(),
+     SettingsScreen(),
   ];
   @override
   Widget build(BuildContext context) {

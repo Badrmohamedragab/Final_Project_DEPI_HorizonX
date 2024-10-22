@@ -168,6 +168,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import '../constants.dart';
 import 'cafes.dart';
 import 'cities_view.dart';
 import 'restaurants.dart';
@@ -198,7 +199,7 @@ class city_view extends StatelessWidget {
           title: Text(
             cityName,
             style: TextStyle(
-                color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
+                color: ConstColors.primaryBlueColor, fontSize: 22, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
         ),
@@ -248,7 +249,7 @@ class city_view extends StatelessWidget {
             child: Text(
               'Discover $cityName',
               style: TextStyle(
-                color: Colors.blue,
+                color: ConstColors.primaryBlueColor,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),

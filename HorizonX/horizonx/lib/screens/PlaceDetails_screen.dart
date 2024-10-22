@@ -10,7 +10,15 @@ class PlaceDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Restaurant"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.orange),
+          onPressed: () {
+            Navigator.pop(context); // Return to previous screen
+          },
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: const Text("Restaurant", style: TextStyle(color: ConstColors.primaryBlueColor, fontWeight: FontWeight.bold),),
       ),
       body: SingleChildScrollView(
         child: Column(
