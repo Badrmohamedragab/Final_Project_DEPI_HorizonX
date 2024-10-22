@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           try {
                             await registerUser();
                             showSnackBar(context, "Registered successfully");
-                            await Future.delayed(const Duration(seconds: 2));
+                            await Future.delayed(const Duration(seconds: 1));
 
                             Navigator.pushReplacement(
                               context,
