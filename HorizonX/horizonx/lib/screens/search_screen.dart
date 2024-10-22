@@ -87,12 +87,112 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: found
-              ? Center(
-                  child: Column(
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: found
+                ? Center(
+                    child: Column(
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).size.height / 11),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 1.35,
+                              child: TextField(
+                                controller: controller,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor:
+                                      const Color(0xff005A9E).withOpacity(0.15),
+                                  hintText: text,
+                                  prefixIcon: const Icon(Icons.search),
+                                  suffixIcon: IconButton(
+                                    icon: const Icon(
+                                      Icons.search,
+                                      color: Color(0xffFFA841),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        searchCity(controller.text);
+                                        text = controller.text;
+                                      });
+                                    },
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.04),
+                            GestureDetector(
+                              onLongPress: listen,
+                              onLongPressEnd: (details) {
+                                setState(() {
+                                  isListening = false;
+                                });
+                                speech.stop();
+                                searchCity(text);
+                              },
+                              child: Container(
+                                height: MediaQuery.of(context).size.height * 0.07,
+                                width: MediaQuery.of(context).size.width * 0.12,
+                                decoration: BoxDecoration(
+                                    color:
+                                        const Color(0xff005A9E).withOpacity(0.15),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: const Icon(
+                                  Icons.mic,
+                                  color: Color(0xffFFA841),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height / 6),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => city_view(
+                                    cityName: dataFound!.name,
+                                    cityLandmark: dataFound!.landmark,
+                                    cityImagePath: dataFound!.imagePath,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: cityContainer(
+                                dataFound!.name, dataFound!.imagePath)),
+                        SizedBox(height: MediaQuery.of(context).size.height / 6),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 14,
+                          width: MediaQuery.of(context).size.width / 1.3,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                found = false; // Go back to search view
+                                text = "search";
+                                controller.clear();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xffFFA841),
+                            ),
+                            child: const Text(
+                              "Search Again",
+                              style: TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Column(
                     children: [
                       SizedBox(height: MediaQuery.of(context).size.height / 11),
                       Row(
@@ -153,150 +253,52 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height / 6),
                       GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => city_view(
-                                  cityName: dataFound!.name,
-                                  cityLandmark: dataFound!.landmark,
-                                  cityImagePath: dataFound!.imagePath,
-                                ),
+                        onLongPressEnd: (details) {
+                          setState(() {
+                            isListening = false;
+                          });
+                          speech.stop();
+                          searchCity(text);
+                        },
+                        onLongPress: listen,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              width: 300,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue.shade700,
                               ),
-                            );
-                          },
-                          child: cityContainer(
-                              dataFound!.name, dataFound!.imagePath)),
-                      SizedBox(height: MediaQuery.of(context).size.height / 6),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 14,
-                        width: MediaQuery.of(context).size.width / 1.3,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              found = false; // Go back to search view
-                              text = "search";
-                              controller.clear();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffFFA841),
-                          ),
-                          child: const Text(
-                            "Search Again",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
+                            ),
+                            Container(
+                              width: 230,
+                              height: 230,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue.shade800,
+                              ),
+                            ),
+                            Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue.shade900,
+                              ),
+                              child: const Icon(
+                                Icons.mic,
+                                color: Colors.white,
+                                size: 50,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                )
-              : Column(
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 11),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.35,
-                          child: TextField(
-                            controller: controller,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor:
-                                  const Color(0xff005A9E).withOpacity(0.15),
-                              hintText: text,
-                              prefixIcon: const Icon(Icons.search),
-                              suffixIcon: IconButton(
-                                icon: const Icon(
-                                  Icons.search,
-                                  color: Color(0xffFFA841),
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    searchCity(controller.text);
-                                    text = controller.text;
-                                  });
-                                },
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.04),
-                        GestureDetector(
-                          onLongPress: listen,
-                          onLongPressEnd: (details) {
-                            setState(() {
-                              isListening = false;
-                            });
-                            speech.stop();
-                            searchCity(text);
-                          },
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * 0.07,
-                            width: MediaQuery.of(context).size.width * 0.12,
-                            decoration: BoxDecoration(
-                                color:
-                                    const Color(0xff005A9E).withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: const Icon(
-                              Icons.mic,
-                              color: Color(0xffFFA841),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 6),
-                    GestureDetector(
-                      onLongPressEnd: (details) {
-                        setState(() {
-                          isListening = false;
-                        });
-                        speech.stop();
-                        searchCity(text);
-                      },
-                      onLongPress: listen,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            width: 300,
-                            height: 300,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.blue.shade700,
-                            ),
-                          ),
-                          Container(
-                            width: 230,
-                            height: 230,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.blue.shade800,
-                            ),
-                          ),
-                          Container(
-                            width: 150,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.blue.shade900,
-                            ),
-                            child: const Icon(
-                              Icons.mic,
-                              color: Colors.white,
-                              size: 50,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+          ),
         ),
       ),
     );

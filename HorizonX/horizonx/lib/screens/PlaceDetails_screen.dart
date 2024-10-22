@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:horizonx/Model/Restaurant.dart';
 import 'package:horizonx/constants.dart';
 import 'package:horizonx/models/place.dart';
+
+import '../widgets/custom_app_bar.dart';
 class PlaceDetailsScreen extends StatelessWidget {
   final Place place;
   const PlaceDetailsScreen({super.key , required this.place});
@@ -10,9 +11,7 @@ class PlaceDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Restaurant"),
-      ),
+      appBar: custom_app_bar(context, "Restaurants"),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

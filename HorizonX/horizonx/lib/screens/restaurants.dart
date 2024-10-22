@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../constants.dart';
 import '../models/restaurant.dart';
-import 'card_cafes_restaurants.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/place_card.dart';
 
 class Restaurants extends StatelessWidget {
   List<Restaurant> restaurantList = [];
@@ -51,11 +53,7 @@ class Restaurants extends StatelessWidget {
           numberOfRatings: 322)
     ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text("Restaurants")),
-        backgroundColor: const Color.fromARGB(150, 0, 90, 158),
-        shadowColor: const Color.fromARGB(255, 20, 50, 80),
-      ),
+      appBar: custom_app_bar(context, "Restaurants"),
       body: ListView.builder(
           itemCount: restaurantList.length,
           itemBuilder: (context, _) => (cafesOrRestaurants(context , restaurantList[_]))),

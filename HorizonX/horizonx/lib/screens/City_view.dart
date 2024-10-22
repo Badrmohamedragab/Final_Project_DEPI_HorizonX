@@ -168,6 +168,8 @@
 // }
 
 import 'package:flutter/material.dart';
+import '../constants.dart';
+import '../widgets/custom_app_bar.dart';
 import 'cafes.dart';
 import 'cities_view.dart';
 import 'restaurants.dart';
@@ -186,22 +188,7 @@ class city_view extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.orange),
-            onPressed: () {
-              Navigator.pop(context); // Return to previous screen
-            },
-          ),
-          title: Text(
-            cityName,
-            style: TextStyle(
-                color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          centerTitle: true,
-        ),
+        appBar: custom_app_bar(context, cityName),
         body: Column(
           children: [
           // Top Image with Title and Landmark
@@ -248,7 +235,7 @@ class city_view extends StatelessWidget {
             child: Text(
               'Discover $cityName',
               style: TextStyle(
-                color: Colors.blue,
+                color: ConstColors.primaryBlueColor,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),

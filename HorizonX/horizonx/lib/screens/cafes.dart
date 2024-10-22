@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../constants.dart';
 import '../models/cafe.dart';
-import 'card_cafes_restaurants.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/place_card.dart';
 
 class Cafes extends StatelessWidget {
   List<Cafe> cafeList = [];
@@ -52,22 +54,21 @@ class Cafes extends StatelessWidget {
           name: "Cafe de la Paix",
           description: "Coffee shop",
           location: "https://maps.app.goo.gl/sp2xSiNQfsttFwY77",
-          address: "6W32+5VV, El-Gaish Rd, Al Mesallah Sharq, Al Attarin, Alexandria Governorate 5373002",
+          address:
+              "6W32+5VV, El-Gaish Rd, Al Mesallah Sharq, Al Attarin, Alexandria Governorate 5373002",
           longitude: "31.482563",
           latitude: "30.221187",
-          picture: "https://lh5.googleusercontent.com/p/AF1QipMMakVYq0WiPAeP1u8RITTpT8BfBTG29wouDwF0",
+          picture:
+              "https://lh5.googleusercontent.com/p/AF1QipMMakVYq0WiPAeP1u8RITTpT8BfBTG29wouDwF0",
           rate: 4.1,
           numberOfRatings: 1474)
     ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text("Cafes")),
-        backgroundColor: const Color.fromARGB(150, 0, 90, 158),
-        shadowColor: const Color.fromARGB(255, 20, 50, 80),
-      ),
+      appBar: custom_app_bar(context, "Cafes"),
       body: ListView.builder(
           itemCount: cafeList.length,
-          itemBuilder: (context, _) => (cafesOrRestaurants(context , cafeList[_]))),
+          itemBuilder: (context, _) =>
+              (cafesOrRestaurants(context, cafeList[_]))),
     );
   }
 }
