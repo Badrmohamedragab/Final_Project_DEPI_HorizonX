@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:horizonx/constants.dart';
+import '../widgets/custom_app_bar.dart';
 import 'City_view.dart';
 
 void main() {
@@ -12,16 +13,7 @@ class cities_view extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-
-        title: Text(
-          "Cities",
-          style: TextStyle(color: ConstColors.primaryBlueColor, fontSize: 22, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
+        appBar: custom_app_bar(context, "Cities"),
         body: CityList(),
       ),
     );
