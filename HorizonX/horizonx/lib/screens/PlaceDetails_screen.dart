@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:horizonx/Model/Restaurant.dart';
 import 'package:horizonx/constants.dart';
 import 'package:horizonx/models/place.dart';
 class PlaceDetailsScreen extends StatelessWidget {
