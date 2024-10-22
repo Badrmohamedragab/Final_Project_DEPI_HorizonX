@@ -2,11 +2,108 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:horizonx/constants.dart';
 import 'package:horizonx/models/place.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../widgets/custom_app_bar.dart';
-class PlaceDetailsScreen extends StatelessWidget {
+abstract class Feature {
+  String title;
+  Feature(this.title);
+
+  Widget buildContent();
+}
+
+class HowToGoFeature extends Feature {
+  HowToGoFeature() : super('How to Go');
+
+  @override
+  Widget buildContent() {
+    return const Column(
+      children: [
+        Text(
+          'Here is the information on how to go to the place.',
+          style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+        ),
+      ],
+    );
+  }
+}
+
+class ReviewsFeature extends Feature {
+  ReviewsFeature() : super('Reviews');
+
+  @override
+  Widget buildContent() {
+    return const Column(
+      children: [
+        Text(
+          'Reviews feature will be available soon.',
+          style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+        ),
+      ],
+    );
+  }
+}
+
+class BookingFeature extends Feature {
+  BookingFeature() : super('Booking');
+
+  @override
+  Widget buildContent() {
+    return const Column(
+      children: [
+        Text(
+          'Booking feature will be available soon.',
+          style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+        ),
+      ],
+    );
+  }
+}
+
+class FeatureButton extends StatelessWidget {
+  final Feature feature;
+  final bool isSelected;
+  final VoidCallback onPressed;
+
+  FeatureButton({
+    required this.feature,
+    required this.isSelected,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isSelected ? ConstColors.primaryBlueColor : Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        ),
+        child: Text(feature.title , style: TextStyle(color: isSelected ? Colors.white : ConstColors.primaryBlueColor),)
+      );
+  }
+}
+
+class PlaceDetailsScreen extends StatefulWidget {
   final Place place;
   const PlaceDetailsScreen({super.key , required this.place});
+
+  @override
+  State<PlaceDetailsScreen> createState() => _PlaceDetailsScreenState();
+
+}
+
+class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
+  late Feature selectedFeature;
+  @override
+  void initState() {
+    super.initState();
+    selectedFeature = HowToGoFeature();
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -36,7 +133,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                 children: [
                   // Image at the top
                   Image.network(
-                    place.picture ?? "assets/place/default",
+                    widget.place.picture ?? "assets/place/default",
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: 200,
@@ -54,7 +151,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                     left: 16,
                     top: 70,
                     child: Text(
-                      place.name,
+                      widget.place.name,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -82,7 +179,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                               const SizedBox(width: 5),
                               Flexible(
                                 child: Text(
-                                  place.address,
+                                  widget.place.address,
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -101,15 +198,20 @@ class PlaceDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        const Row(
-                          children: [
-                            Icon(Icons.star, color: ConstColors.primaryGoldColor),
-                            Icon(Icons.star, color: ConstColors.primaryGoldColor),
-                            Icon(Icons.star, color: ConstColors.primaryGoldColor),
-                            Icon(Icons.star, color: ConstColors.primaryGoldColor),
-                            Icon(Icons.star_border, color: ConstColors.primaryGoldColor),
-                          ],
-                        ),
+                        RatingBar.builder(
+                            initialRating: widget.place.rate,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            unratedColor: Colors.grey,
+                            itemCount: 5,
+                            itemSize: 25.0,
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                            itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.orange,
+                            ),
+                            onRatingUpdate: print)
                       ],
                     ),
                   ),
@@ -136,7 +238,7 @@ class PlaceDetailsScreen extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      place.description,
+                      widget.place.description,
                       style:  const TextStyle(
                           color: ConstColors.primaryBlueColor,
                           fontSize: 16,
@@ -152,67 +254,43 @@ class PlaceDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ConstColors.primaryBlueColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                          ),
-                          child: const Text(
-                            "How to go !",
-                            style: TextStyle(
-                              color: Colors.white, // Text color
-                              fontSize: 14,
-                            ),
-                          ),
+                        FeatureButton(
+                          feature: HowToGoFeature(),
+                          isSelected: selectedFeature is HowToGoFeature,
+                          onPressed: () {
+                            setState(() {
+                              selectedFeature = HowToGoFeature();
+                            });
+                          },
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ConstColors.primaryBlueColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                          ),
-                          child: const Text(
-                            "Reviews",
-                            style: TextStyle(
-                              color: Colors.white, // Text color
-                              fontSize: 14,
-                            ),
-                          ),
+                        const SizedBox(width: 10),
+                        FeatureButton(
+                          feature: ReviewsFeature(),
+                          isSelected: selectedFeature is ReviewsFeature,
+                          onPressed: () {
+                            setState(() {
+                              selectedFeature = ReviewsFeature();
+                            });
+                          },
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ConstColors.primaryBlueColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                          ),
-                          child: const Text(
-                            "Booking",
-                            style: TextStyle(
-                              color: Colors.white, // Text color
-                              fontSize: 14,
-                            ),
-                          ),
+                        SizedBox(width: 10),
+                        FeatureButton(
+                          feature: BookingFeature(),
+                          isSelected: selectedFeature is BookingFeature,
+                          onPressed: () {
+                            setState(() {
+                              selectedFeature = BookingFeature();
+                            });
+                          },
                         ),
-
                       ],
                     ),
                     const Divider(
                       color: ConstColors.primaryBlueColor,
                       height: 25,
                       thickness: 0.7,
-
                     ),
-
+                    selectedFeature.buildContent(),
 
                   ],
                 )
