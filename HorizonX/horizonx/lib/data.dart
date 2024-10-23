@@ -99,48 +99,49 @@ class Data{
   ];
   static List<Place> beachesList = [
     Place(
-      cityId: "Sharm El Sheikh",
-      name: "Naama Bay",
-      description: "Famous beach with crystal-clear waters and vibrant marine life.",
-      location: "https://maps.app.goo.gl/H9PkjR7RmXpHZx8w6",
-      address: "Naama Bay, Sharm El Sheikh",
-      longitude: "34.3071",
-      latitude: "27.9147",
-      picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmRdyJc55vkPCidJ3nMk8gwgdJgbZxfxdNTw&s",
-      rate: 4.7,
-      numberOfRatings: 17000
-  ),
-      Place(
-  cityId: "Hurghada",
-  name: "Sahl Hasheesh Beach",
-  description: "Exclusive beach area with beautiful white sand and blue waters.",
-  location: "https://maps.app.goo.gl/c8BFGtwpVi85TgGG6",
-  address: "Sahl Hasheesh, Hurghada",
-  longitude: "33.8912",
-  latitude: "27.0531",
-  picture: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/3f/f9/a7/the-oberoi-sahl-hasheesh.jpg?w=600&h=400&s=1",
-  rate: 4.8,
-  numberOfRatings: 22000
-  ),
-  Place(
-  cityId: "Alexandria",
-  name: "Mamoura Beach",
-  description: "A popular public beach in Alexandria.",
-  location: "https://maps.app.goo.gl/cQzmVsRpHJNhVHXH9",
-  address: "Mamoura, Alexandria",
-  longitude: "29.8598",
-  latitude: "31.2743",
-  picture: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/318984912.jpg?k=c551caec38958f0924088be42e167f84373957e8f249fb9da870356348e45552&o=&hp=1",
-  rate: 4.5,
-  numberOfRatings: 18000
-  ),
+        cityId: "Sharm El Sheikh",
+        name: "Naama Bay",
+        description: "Famous beach with crystal-clear waters and vibrant marine life.",
+        location: "https://maps.google.com/?q=27.9147,34.3071",
+        address: "Naama Bay, Sharm El Sheikh",
+        longitude: "34.3071",
+        latitude: "27.9147",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmRdyJc55vkPCidJ3nMk8gwgdJgbZxfxdNTw&s",
+        rate: 4.7,
+        numberOfRatings: 17000
+    ),
+    Place(
+        cityId: "Hurghada",
+        name: "Sahl Hasheesh Beach",
+        description: "Exclusive beach area with beautiful white sand and blue waters.",
+        location: "https://maps.google.com/?q=27.0531,33.8912",
+        address: "Sahl Hasheesh, Hurghada",
+        longitude: "33.8912",
+        latitude: "27.0531",
+        picture: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/3f/f9/a7/the-oberoi-sahl-hasheesh.jpg?w=600&h=400&s=1",
+        rate: 4.8,
+        numberOfRatings: 22000
+    ),
+    Place(
+        cityId: "Alexandria",
+        name: "Mamoura Beach",
+        description: "A popular public beach in Alexandria.",
+        location: "https://maps.google.com/?q=31.2743,29.8598",
+        address: "Mamoura, Alexandria",
+        longitude: "29.8598",
+        latitude: "31.2743",
+        picture: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/318984912.jpg?k=c551caec38958f0924088be42e167f84373957e8f249fb9da870356348e45552&o=&hp=1",
+        rate: 4.5,
+        numberOfRatings: 18000
+    ),
   ];
+
   static List<Place> tourismList = [
     Place(
         cityId: "Cairo",
         name: "The Egyptian Museum",
         description: "Famous museum housing a vast collection of ancient Egyptian artifacts.",
-        location: "https://maps.app.goo.gl/1D2fk34mLf1rZoVh8",
+        location: "https://maps.google.com/?q=30.0444,31.2357",
         address: "Tahrir Square, Cairo",
         longitude: "31.2357",
         latitude: "30.0444",
@@ -152,7 +153,7 @@ class Data{
         cityId: "Alexandria",
         name: "Bibliotheca Alexandrina",
         description: "Modern library and cultural center.",
-        location: "https://maps.app.goo.gl/8Qt72JKNXyN9f6FC9",
+        location: "https://maps.google.com/?q=31.2156,29.9091",
         address: "El Shatby, Alexandria",
         longitude: "29.9091",
         latitude: "31.2156",
@@ -164,7 +165,7 @@ class Data{
         cityId: "Luxor",
         name: "Valley of the Kings",
         description: "A series of tombs for the Pharaohs of ancient Egypt.",
-        location: "https://maps.app.goo.gl/6GkK9TyMd4y7MNzk8",
+        location: "https://maps.google.com/?q=25.7402,32.6044",
         address: "West Bank, Luxor",
         longitude: "32.6044",
         latitude: "25.7402",
@@ -176,7 +177,7 @@ class Data{
         cityId: "Aswan",
         name: "Philae Temple",
         description: "Ancient temple complex dedicated to the goddess Isis.",
-        location: "https://maps.app.goo.gl/dR3pFsnKJGcCrScs9",
+        location: "https://maps.google.com/?q=24.0223,32.8998",
         address: "Philae Island, Aswan",
         longitude: "32.8998",
         latitude: "24.0223",
@@ -188,21 +189,22 @@ class Data{
         cityId: "Giza",
         name: "Giza Pyramids",
         description: "Iconic ancient pyramids and the Sphinx.",
-        location: "https://maps.app.goo.gl/5X1v9H7ZKnBzXKbb7",
+        location: "https://maps.google.com/?q=29.9765,31.1342",
         address: "Al Haram, Giza",
         longitude: "31.1342",
         latitude: "29.9765",
         picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT996ZwTDIgvcs4Nq2TskHotABIwIkcjq-9Q&s",
         rate: 4.9,
         numberOfRatings: 100000
-    )
+    ),
   ];
+
   static List<Place> shoppingList = [
     Place(
         cityId: "Cairo",
         name: "Mall of Egypt",
         description: "A massive shopping mall with international brands and entertainment options.",
-        location: "https://maps.app.goo.gl/L6JzYxxQjhgUZwFY9",
+        location: "https://maps.google.com/?q=29.9647,31.0184",
         address: "Al Wahat Road, 6th of October, Giza",
         longitude: "31.0184",
         latitude: "29.9647",
@@ -214,7 +216,7 @@ class Data{
         cityId: "Alexandria",
         name: "City Centre Alexandria",
         description: "Large shopping mall with a variety of international and local brands.",
-        location: "https://maps.app.goo.gl/P3MV2W7HBZLZGzks7",
+        location: "https://maps.google.com/?q=31.2076,29.9466",
         address: "Alex Desert Rd, Alexandria",
         longitude: "29.9466",
         latitude: "31.2076",
@@ -226,7 +228,7 @@ class Data{
         cityId: "Hurghada",
         name: "Senzo Mall",
         description: "Popular shopping mall in Hurghada.",
-        location: "https://maps.app.goo.gl/z6G8bcPu7q6G69sY7",
+        location: "https://maps.google.com/?q=27.1444,33.8117",
         address: "Village Road, Hurghada",
         longitude: "33.8117",
         latitude: "27.1444",
@@ -238,7 +240,7 @@ class Data{
         cityId: "Sharm El Sheikh",
         name: "Soho Square",
         description: "Vibrant shopping and entertainment complex.",
-        location: "https://maps.app.goo.gl/zA3PtLFrWdpZwLmb7",
+        location: "https://maps.google.com/?q=27.9621,34.3838",
         address: "White Knight Beach, Sharm El Sheikh",
         longitude: "34.3838",
         latitude: "27.9621",
@@ -250,21 +252,22 @@ class Data{
         cityId: "Cairo",
         name: "Cairo Festival City Mall",
         description: "Huge shopping complex with a variety of dining, shopping, and entertainment options.",
-        location: "https://maps.app.goo.gl/6X6xSsdLnCQHfDQn9",
+        location: "https://maps.google.com/?q=30.0154,31.4341",
         address: "New Cairo, Cairo",
         longitude: "31.4341",
         latitude: "30.0154",
         picture: "https://constraderealestate.com/wp-content/uploads/2023/02/%D9%85%D9%88%D9%84-%D9%83%D8%A7%D9%8A%D8%B1%D9%88-%D9%81%D9%8A%D8%B3%D8%AA%D9%8A%D9%81%D8%A7%D9%84-compress.jpg",
         rate: 4.7,
         numberOfRatings: 50000
-    )
+    ),
   ];
-  static List<Place> parksList  = [
+
+  static List<Place> parksList = [
     Place(
         cityId: "Cairo",
         name: "Al-Azhar Park",
         description: "A large public park offering stunning views of Cairo's skyline and Islamic architecture.",
-        location: "https://maps.app.goo.gl/WmnhF32UzAnFp2BG9",
+        location: "https://goo.gl/maps/Nh48AYhXn7Y6tr9P6",
         address: "Salah Salem St, El-Darb El-Ahmar, Cairo",
         longitude: "31.2636",
         latitude: "30.0385",
@@ -276,7 +279,7 @@ class Data{
         cityId: "Alexandria",
         name: "Montaza Palace Gardens",
         description: "Beautiful gardens surrounding the historic Montaza Palace, overlooking the Mediterranean Sea.",
-        location: "https://maps.app.goo.gl/kz3T8HtZsbTvZPf57",
+        location: "https://goo.gl/maps/7B19hzH5QWSWJTyN9",
         address: "El-Montaza, Alexandria",
         longitude: "29.9532",
         latitude: "31.2775",
@@ -288,7 +291,7 @@ class Data{
         cityId: "Giza",
         name: "Orman Garden",
         description: "A botanical garden offering a peaceful escape with a variety of plant species.",
-        location: "https://maps.app.goo.gl/Sbhm4MDyEmFb6syh8",
+        location: "https://goo.gl/maps/8fN6sS4QhF6vU4sHA",
         address: "University St, Giza",
         longitude: "31.2154",
         latitude: "30.0289",
@@ -300,7 +303,7 @@ class Data{
         cityId: "Aswan",
         name: "Feryal Garden",
         description: "A tranquil garden located by the Nile River with picturesque views.",
-        location: "https://maps.app.goo.gl/qYXVtJnBcWVho2ja6",
+        location: "https://goo.gl/maps/cF5zSZZ7kXTUXyD67",
         address: "Corniche El Nile, Aswan",
         longitude: "32.8984",
         latitude: "24.0864",
@@ -312,13 +315,14 @@ class Data{
         cityId: "Hurghada",
         name: "Hurghada Botanical Garden",
         description: "A peaceful green space with a variety of native and exotic plants.",
-        location: "https://maps.app.goo.gl/47F72X8SYpP2f9rN7",
+        location: "https://goo.gl/maps/CYc5A9HSaUnN9Lnt7",
         address: "Hurghada Marina Blvd, Hurghada",
         longitude: "33.8372",
         latitude: "27.1922",
         picture: "https://www.cairotoptours.com/storage/1770/conversions/Aswan%20Botanical%20Gardens-webp.webp",
         rate: 4.4,
         numberOfRatings: 5000
-    )
+    ),
   ];
+
 }

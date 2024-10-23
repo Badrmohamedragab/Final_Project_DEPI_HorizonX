@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:horizonx/screens/PlaceDetails_screen.dart';
+import 'package:horizonx/settings_provider.dart';
+import 'package:provider/provider.dart';
 import '../models/place.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-Widget cafesOrRestaurants(BuildContext context ,Place place) {
+Widget cafesOrRestaurants(BuildContext context, Place place) {
+  SettingsProvider settings = Provider.of<SettingsProvider>(context);
+
   return GestureDetector(
     onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PlaceDetailsScreen(
-          place: place,
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlaceDetailsScreen(
+            place: place,
+          ),
         ),
-      ),
-    );
-  },
+      );
+    },
     child: Padding(
       padding: const EdgeInsets.all(3.0),
       child: SizedBox(
         height: 240,
         width: double.infinity,
         child: Card(
+          color: settings.themeColor,
           margin: const EdgeInsets.all(0),
           elevation: 10,
           shape: const RoundedRectangleBorder(
@@ -106,7 +111,8 @@ Widget cafesOrRestaurants(BuildContext context ,Place place) {
                             unratedColor: Colors.grey,
                             itemCount: 5,
                             itemSize: 20.0,
-                            itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                            itemPadding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
                             itemBuilder: (context, _) => const Icon(
                                   Icons.star,
                                   color: Colors.orange,
