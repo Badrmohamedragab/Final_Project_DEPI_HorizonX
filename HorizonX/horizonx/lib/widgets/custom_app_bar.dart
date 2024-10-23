@@ -1,14 +1,15 @@
-
 import 'package:flutter/material.dart';
+import 'package:horizonx/settings_provider.dart';
 
 import '../constants.dart';
 
-AppBar custom_app_bar(BuildContext context, String titleName) {
+AppBar custom_app_bar(
+    BuildContext context, String titleName, SettingsProvider settings) {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: settings.themeColor,
     elevation: 0,
     leading: IconButton(
-      icon: Icon(Icons.arrow_back, color: Colors.orange),
+      icon: const Icon(Icons.arrow_back, color: Colors.orange),
       onPressed: () {
         Navigator.pop(context); // Return to previous screen
       },

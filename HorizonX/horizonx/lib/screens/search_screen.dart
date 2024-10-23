@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:horizonx/screens/City_view.dart';
 import 'package:horizonx/screens/cities_view.dart';
+import 'package:horizonx/settings_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class SearchByVoiceScreen extends StatefulWidget {
@@ -95,7 +97,8 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                 ? Center(
                     child: Column(
                       children: [
-                        SizedBox(height: MediaQuery.of(context).size.height / 11),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 11),
                         Row(
                           children: [
                             SizedBox(
@@ -114,10 +117,13 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                                       color: Color(0xffFFA841),
                                     ),
                                     onPressed: () {
-                                      setState(() {
-                                        searchCity(controller.text);
-                                        text = controller.text;
-                                      });
+                                      if (text != "Search" ||
+                                          controller.text.isNotEmpty) {
+                                        setState(() {
+                                          searchCity(controller.text);
+                                          text = controller.text;
+                                        });
+                                      }
                                     },
                                   ),
                                   border: OutlineInputBorder(
@@ -127,7 +133,8 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                               ),
                             ),
                             SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.04),
+                                width:
+                                    MediaQuery.of(context).size.width * 0.04),
                             GestureDetector(
                               onLongPress: listen,
                               onLongPressEnd: (details) {
@@ -138,11 +145,12 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                                 searchCity(text);
                               },
                               child: Container(
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
                                 width: MediaQuery.of(context).size.width * 0.12,
                                 decoration: BoxDecoration(
-                                    color:
-                                        const Color(0xff005A9E).withOpacity(0.15),
+                                    color: const Color(0xff005A9E)
+                                        .withOpacity(0.15),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: const Icon(
                                   Icons.mic,
@@ -152,7 +160,8 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                             )
                           ],
                         ),
-                        SizedBox(height: MediaQuery.of(context).size.height / 6),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 6),
                         GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -168,7 +177,8 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                             },
                             child: cityContainer(
                                 dataFound!.name, dataFound!.imagePath)),
-                        SizedBox(height: MediaQuery.of(context).size.height / 6),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 6),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 14,
                           width: MediaQuery.of(context).size.width / 1.3,
@@ -185,7 +195,8 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                             ),
                             child: const Text(
                               "Search Again",
-                              style: TextStyle(color: Colors.white, fontSize: 18),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
                             ),
                           ),
                         ),
@@ -213,10 +224,13 @@ class SearchByVoiceScreenState extends State<SearchByVoiceScreen> {
                                     color: Color(0xffFFA841),
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      searchCity(controller.text);
-                                      text = controller.text;
-                                    });
+                                    if (text != "Search" ||
+                                        controller.text.length > 2) {
+                                      setState(() {
+                                        searchCity(controller.text);
+                                        text = controller.text;
+                                      });
+                                    }
                                   },
                                 ),
                                 border: OutlineInputBorder(

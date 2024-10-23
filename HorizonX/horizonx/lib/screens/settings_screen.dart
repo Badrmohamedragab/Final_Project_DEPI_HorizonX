@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:horizonx/app_theme.dart';
+import 'package:horizonx/settings_provider.dart';
 import 'package:horizonx/widgets/lang_button.dart';
 import 'package:horizonx/widgets/settings_option.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 import 'login_screen.dart';
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
   @override
@@ -11,9 +15,11 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool isDarkMode = false;
+  // bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settings = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -60,14 +66,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               icon: Icons.nightlight_round,
               title: 'Dark Mode',
               trailing: Switch(
-                activeColor: const Color(0xff005A9E),
-                value: isDarkMode,
-                onChanged: (value) {
-                  setState(() {
-                    isDarkMode = value;
-                  });
-                },
-              ),
+                  activeTrackColor: AppTheme.primaryBlueColor,
+                  inactiveTrackColor: AppTheme.backgroundDarkMode,
+                  value: settings.themeMode == ThemeMode.dark,
+                  onChanged: (value) {
+                    if (value) {
+                      settings.changeTheme(ThemeMode.dark);
+                    } else {
+                      settings.changeTheme(ThemeMode.light);
+                    }
+                  }),
             ),
 
             const Divider(thickness: 1, color: Colors.blue),
@@ -92,7 +100,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => const LoginScreen(),
                     ),
                   );
                 },
